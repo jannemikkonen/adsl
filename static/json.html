@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<p align="center">
+ <button type="button" onClick="getWifi()">GET</button> 
+ <button type="button" onClick="postWifi()">POST</button> 
+ <button type="button">PUT</button> 
+ <button type="button">DELETE</button> 
+ <button type="button">GET ALL</button> 
+</p>
+<p align="center">
+<textarea id="ta" cols="50" rows="10">
+</textarea>
+</p>
+<script type="text/javascript">
+function getWifi(){
+	 $.getJSON("http://localhost:8080/wifi", function(result){
+		document.getElementById("ta").value=JSON.stringify(result);
+		console.log(result);
+	 });
+}
+function postWifi(){
+	$.ajax({
+		  url:"http://localhost:8080/wifi",
+		  type:"POST",
+		  data:JSON.stringify(document.getElementById("ta").value),
+		  dataType:"json",
+		  success: function(){
+		    alert ("hienosti meni");
+		  }
+
+	 });
+}
+</script>
+</body>
+</html>
